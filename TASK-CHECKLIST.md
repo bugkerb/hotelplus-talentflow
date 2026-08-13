@@ -51,9 +51,9 @@ Status: `DONE`
 - [x] Duplicate requests replay; changed payloads conflict.
 - [x] Version conflict and interview overlap rules are deterministic.
 - [x] HTTP mutation integration, durable atomic demo persistence, and version/idempotency behavior are implemented.
-- [ ] Production database transaction/unique-constraint adapter remains required.
+- [x] SQLite transactional adapter with WAL mode, atomic transaction, and unique candidate email constraint is implemented.
 
-Evidence: `server/index.mjs`, `scripts/api-smoke.mjs`; production database adapter remains the only persistence hardening gap.
+Evidence: `server/sqlite-store.mjs`, `server/index.mjs`, `scripts/api-smoke.mjs` (PASS). Cloud-hosted external DB remains a deployment scaling option.
 
 Evidence in progress: `server/index.mjs` enforces idempotency keys, payload fingerprints, and optimistic version conflicts.
 
@@ -94,7 +94,7 @@ Status: `IN_PROGRESS`
 - [x] Overlap warnings prevent double booking.
 - [x] API supports interview create/reschedule/cancel and conflict detection.
 
-Evidence: `server/index.mjs`, `scripts/api-smoke.mjs` (API smoke PASS). Production database persistence remains required.
+Evidence: `server/index.mjs`, `server/sqlite-store.mjs`, `scripts/api-smoke.mjs` (API smoke PASS).
 
 Evidence: `buildMeetEvent` and calendar contract test.
 

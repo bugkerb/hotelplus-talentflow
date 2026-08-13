@@ -2,15 +2,19 @@ import { createServer } from 'node:http';
 import { createHash, randomUUID } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { openStore, loadSqlite, persistSqlite } from './sqlite-store.mjs';
 
 const port = Number(process.env.PORT || 8787);
 const candidates = new Map();
 const idempotency = new Map();
 const interviews = new Map();
 const storePath = process.env.TALENTFLOW_STORE || join(process.cwd(), 'data', 'store.json');
+const sqlitePath = process.env.TALENTFLOW_DB || join(process.cwd(), 'data', 'talentflow.sqlite');
+const database = openStore(sqlitePath);
 function loadStore() { try { if (!existsSync(storePath)) return; const saved = JSON.parse(readFileSync(storePath, 'utf8')); for (const value of saved.candidates || []) candidates.set(value.id, value); for (const value of saved.interviews || []) interviews.set(value.id, value); } catch { /* corrupt local demo store starts clean */ } }
-function persistStore() { mkdirSync(dirname(storePath), { recursive: true }); const temp = `${storePath}.${process.pid}.tmp`; writeFileSync(temp, JSON.stringify({ candidates: [...candidates.values()], interviews: [...interviews.values()] })); renameSync(temp, storePath); }
+function persistStore() { mkdirSync(dirname(storePath), { recursive: true }); const temp = `${storePath}.${process.pid}.tmp`; writeFileSync(temp, JSON.stringify({ candidates: [...candidates.values()], interviews: [...interviews.values()] })); renameSync(temp, storePath); persistSqlite(database, candidates, interviews); }
 loadStore();
+loadSqlite(database, candidates, interviews);
 const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:5173';
 
 function json(res, status, body) {

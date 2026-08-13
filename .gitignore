@@ -7,3 +7,5 @@ coverage
 !.env.example
 .vercel
 data/store.json
+data/*.sqlite
+data/*.sqlite-*

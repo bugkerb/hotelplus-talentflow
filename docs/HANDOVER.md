@@ -6,3 +6,9 @@
 4. Keep Claude credentials server-side as `ANTHROPIC_API_KEY`; never expose them to Vite.
 5. Replace demo scraper/scheduler handlers with authenticated connector adapters. Preserve domain contracts and tests.
 6. Add API authentication, database transactions, unique constraints, idempotency storage, and centralized audit logging before production.
+
+## Verification evidence
+
+- `npm run verify`: lint, typecheck, unit tests, 100% business-logic coverage, and build.
+- `npm run api:smoke`: API authorization, candidate idempotency replay, and deterministic AI fallback.
+- `npm run e2e`: two browser flows covering module navigation and Tracker operations.
