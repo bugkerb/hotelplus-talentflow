@@ -103,14 +103,16 @@ Evidence: `buildMeetEvent` and calendar contract test.
 Status: `IN_PROGRESS`
 
 - [x] One HR flow is represented through all four module workspaces.
-- [ ] Loading, empty, error, conflict, success states need full API integration.
+- [x] Browser E2E covers module navigation, success notices, add/search/move/remove flow.
+- [ ] Full API-backed loading/error states remain production integration work.
 - [x] GitHub Actions runs quality/security gates.
+- [x] Playwright E2E covers module navigation and core Tracker actions.
 - [x] Deployment is Ready in the correct Vercel team; live smoke checklist is documented.
 
 ## Task 10 - Handover and release audit
 
-Status: `TODO`
+Status: `IN_PROGRESS`
 
 - [ ] README, architecture, security, testing, AI harness, deployment, handover, and AI collaboration docs complete.
-- [ ] Three-minute demo script and reviewed ChatGPT/GPT Work conversation export ready.
+- [x] Three-minute demo script and AI collaboration document are ready; conversation export remains a submission packaging step.
 - [ ] Clean checkout and requirement-by-requirement audit pass.

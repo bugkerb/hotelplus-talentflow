@@ -3,7 +3,36 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "scripts": {"dev":"vite","api":"node server/index.mjs","api:smoke":"node scripts/api-smoke.mjs","build":"tsc -b && vite build","lint":"eslint .","typecheck":"tsc --noEmit","test":"vitest run","test:coverage":"vitest run --coverage","verify":"npm run lint && npm run typecheck && npm run test:coverage && npm run build"},
-  "dependencies": {"@vitejs/plugin-react":"latest","vite":"latest","typescript":"latest","react":"latest","react-dom":"latest"},
-  "devDependencies": {"@eslint/js":"latest","eslint":"latest","globals":"latest","vitest":"latest","@vitest/coverage-v8":"latest","jsdom":"latest","typescript-eslint":"latest","@types/react":"latest","@types/react-dom":"latest"}
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "api": "node server/index.mjs",
+    "api:smoke": "node scripts/api-smoke.mjs",
+    "e2e": "playwright test",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "verify": "npm run lint && npm run typecheck && npm run test:coverage && npm run build"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@eslint/js": "latest",
+    "@playwright/test": "^1.62.1",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitest/coverage-v8": "latest",
+    "eslint": "latest",
+    "globals": "latest",
+    "jsdom": "latest",
+    "typescript-eslint": "latest",
+    "vitest": "latest"
+  }
 }
