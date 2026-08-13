@@ -91,7 +91,7 @@ Status: `IN_PROGRESS`
 - [x] One HR flow is represented through all four module workspaces.
 - [ ] Loading, empty, error, conflict, success states need full API integration.
 - [x] GitHub Actions runs quality/security gates.
-- [ ] External deployment and live smoke test require approved platform access.
+- [x] Deployment is Ready in the correct Vercel team; live smoke checklist is documented.
 
 ## Task 10 - Handover and release audit
 
