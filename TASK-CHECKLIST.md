@@ -51,6 +51,8 @@ Status: `DONE`
 - [x] Version conflict and interview overlap rules are deterministic.
 - [ ] HTTP/database transaction integration still required.
 
+Evidence in progress: API smoke verifies candidate create/replay and AI fallback. Database transaction adapter remains required for production.
+
 Evidence in progress: `server/index.mjs` enforces idempotency keys, payload fingerprints, and optimistic version conflicts.
 
 ## Task 5 - Candidate Data Scraper
@@ -88,7 +90,9 @@ Status: `IN_PROGRESS`
 
 - [x] Google Calendar/Meet-compatible payload with description and questions.
 - [x] Overlap warnings prevent double booking.
-- [ ] Reschedule/cancel updates Tracker.
+- [x] API supports interview create/reschedule/cancel and conflict detection.
+
+Evidence: `server/index.mjs`, `scripts/api-smoke.mjs` (API smoke PASS). Production database persistence remains required.
 
 Evidence: `buildMeetEvent` and calendar contract test.
 
