@@ -26,6 +26,10 @@ test('Tracker supports adding, searching, moving, and removing a candidate', asy
   const card = page.locator('article').filter({ hasText: 'E2E Candidate' });
   await card.getByRole('combobox').selectOption('screening');
   await expect(page.getByRole('status')).toContainText('moved to screening');
-  await card.getByRole('button', { name: 'Remove' }).click();
-  await expect(page.getByText('E2E Candidate')).toHaveCount(0);
+  page.once('dialog', async (dialog) => dialog.accept('Edited Candidate'));
+  await card.getByRole('button', { name: 'Edit' }).click();
+  await page.getByPlaceholder('Search name, email, position, source').fill('');
+  await expect(page.getByText('Edited Candidate')).toBeVisible();
+  await page.locator('article').filter({ hasText: 'Edited Candidate' }).getByRole('button', { name: 'Remove' }).click();
+  await expect(page.getByText('Edited Candidate')).toHaveCount(0);
 });
