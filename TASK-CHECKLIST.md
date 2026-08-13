@@ -40,6 +40,8 @@ Status: `IN_PROGRESS`
 - [x] XSS protection, redaction, AI schema validation, and domain input validation are tested.
 - [ ] File upload, API authorization, headers, and CORS enforcement are still required at backend boundary.
 
+Evidence in progress: `server/index.mjs` now provides security headers, CORS allowlist, payload limit, and stable errors.
+
 ## Task 4 - Idempotency and race conditions
 
 Status: `DONE`
@@ -48,6 +50,8 @@ Status: `DONE`
 - [x] Duplicate requests replay; changed payloads conflict.
 - [x] Version conflict and interview overlap rules are deterministic.
 - [ ] HTTP/database transaction integration still required.
+
+Evidence in progress: `server/index.mjs` enforces idempotency keys, payload fingerprints, and optimistic version conflicts.
 
 ## Task 5 - Candidate Data Scraper
 
@@ -60,13 +64,15 @@ Status: `TODO`
 
 ## Task 6 - AI Resume Screener and harness
 
-Status: `TODO`
+Status: `IN_PROGRESS`
 
 - [ ] PDF upload and plain text paste supported.
 - [ ] Claude-compatible adapter returns structured 0-10 Skills/Experience/Culture scores.
 - [ ] Reasoning, strengths, prescreen questions, and team report shown.
 - [ ] Harness covers normal, malformed, prompt injection, PII, and missing evidence fixtures.
 - [ ] Mock runs are deterministic and invalid output falls back to review.
+
+Evidence in progress: `src/ai/claude-provider.ts` and provider contract tests.
 
 ## Task 7 - Applicant Tracker
 
