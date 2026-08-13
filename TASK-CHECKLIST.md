@@ -38,9 +38,10 @@ Status: `IN_PROGRESS`
 
 - [x] OWASP review documents controls and residual risks.
 - [x] XSS protection, redaction, AI schema validation, and domain input validation are tested.
-- [ ] File upload, API authorization, headers, and CORS enforcement are still required at backend boundary.
+- [x] API authorization, security headers, CORS allowlist, payload limit, and safe errors are enforced at backend boundary.
+- [ ] Real authenticated identity provider and file MIME sniffing remain production hardening.
 
-Evidence in progress: `server/index.mjs` now provides security headers, CORS allowlist, payload limit, and stable errors.
+Evidence: `server/index.mjs`, `scripts/api-smoke.mjs` authorization smoke test.
 
 ## Task 4 - Idempotency and race conditions
 
