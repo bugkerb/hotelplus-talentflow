@@ -1,0 +1,13 @@
+# Deployment
+
+## CI
+
+`.github/workflows/ci.yml` runs on pushes and pull requests: `npm ci`, lint, strict typecheck, Vitest with 100% business-logic coverage, production build, and high-severity npm audit.
+
+## Production target
+
+Deploy the Vite `dist/` output to Vercel, Cloudflare Pages, or another free static host. No AI key belongs in the browser. A server-side Claude adapter should be deployed separately with `ANTHROPIC_API_KEY` configured as a secret.
+
+## Smoke test
+
+After deployment verify the root page loads, all five navigation entries render, Tracker search filters candidates, stage change updates the lane, and each module shows its primary action.

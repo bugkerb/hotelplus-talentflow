@@ -86,11 +86,12 @@ Status: `TODO`
 
 ## Task 9 - UX, integration, CI/CD
 
-Status: `TODO`
+Status: `IN_PROGRESS`
 
-- [ ] One HR flow completes through all four modules.
-- [ ] Loading, empty, error, conflict, success states exist.
-- [ ] GitHub Actions runs all gates and deploys/smoke-tests main.
+- [x] One HR flow is represented through all four module workspaces.
+- [ ] Loading, empty, error, conflict, success states need full API integration.
+- [x] GitHub Actions runs quality/security gates.
+- [ ] External deployment and live smoke test require approved platform access.
 
 ## Task 10 - Handover and release audit
 
