@@ -11,4 +11,4 @@ Deterministic acceptance criteria:
 - PII is excluded from scoring criteria.
 - Same fixture and mock provider return the same result.
 
-The production Claude adapter must be server-side, schema-validate the response, redact logs, and preserve the fallback behavior. Versioned fixtures live in `src/ai/harness.fixtures.ts` and include adversarial prompt injection and PII-only inputs.
+The production Claude adapter is server-side, parses JSON, schema-validates the response, redacts logs, and preserves the fallback behavior. Versioned fixtures live in `src/ai/harness.fixtures.ts` and include adversarial prompt injection and PII-only inputs.

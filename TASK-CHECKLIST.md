@@ -50,9 +50,10 @@ Status: `DONE`
 - [x] Idempotency decision and request fingerprint rules exist.
 - [x] Duplicate requests replay; changed payloads conflict.
 - [x] Version conflict and interview overlap rules are deterministic.
-- [ ] HTTP/database transaction integration still required.
+- [x] HTTP mutation integration, durable atomic demo persistence, and version/idempotency behavior are implemented.
+- [ ] Production database transaction/unique-constraint adapter remains required.
 
-Evidence in progress: API smoke verifies candidate create/replay and AI fallback. Database transaction adapter remains required for production.
+Evidence: `server/index.mjs`, `scripts/api-smoke.mjs`; production database adapter remains the only persistence hardening gap.
 
 Evidence in progress: `server/index.mjs` enforces idempotency keys, payload fingerprints, and optimistic version conflicts.
 
@@ -70,7 +71,7 @@ Status: `TODO`
 Status: `IN_PROGRESS`
 
 - [ ] PDF upload and plain text paste supported.
-- [ ] Claude-compatible adapter returns structured 0-10 Skills/Experience/Culture scores.
+- [x] Claude-compatible adapter returns parsed/validated structured 0-10 Skills/Experience/Culture scores or `needs_review` fallback.
 - [ ] Reasoning, strengths, prescreen questions, and team report shown.
 - [x] Harness covers normal, malformed, prompt injection, PII, and missing evidence fixtures.
 - [x] Mock runs are deterministic and invalid output falls back to review.
