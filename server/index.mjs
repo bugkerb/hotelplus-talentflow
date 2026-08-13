@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { createHash, randomUUID } from 'node:crypto';
+import { createHash, randomUUID, timingSafeEqual } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { openStore, loadSqlite, persistSqlite } from './sqlite-store.mjs';
@@ -16,6 +16,7 @@ function persistStore() { mkdirSync(dirname(storePath), { recursive: true }); co
 loadStore();
 loadSqlite(database, candidates, interviews);
 const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:5173';
+const authToken = process.env.TALENTFLOW_AUTH_TOKEN;
 
 function json(res, status, body) {
   res.writeHead(status, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', 'x-content-type-options': 'nosniff', 'x-frame-options': 'DENY', 'content-security-policy': "default-src 'none'; frame-ancestors 'none'", 'access-control-allow-origin': allowedOrigin, 'access-control-allow-headers': 'content-type, idempotency-key, if-match', 'access-control-allow-methods': 'GET,POST,OPTIONS' });
@@ -24,7 +25,7 @@ function json(res, status, body) {
 
 async function body(req) { let text = ''; for await (const chunk of req) { text += chunk; if (text.length > 1_000_000) throw Error('payload_too_large'); } return text ? JSON.parse(text) : {}; }
 function fingerprint(value) { return createHash('sha256').update(JSON.stringify(value)).digest('hex'); }
-function authorize(req) { const role = req.headers['x-user-role']; if (role !== 'recruiter' && role !== 'admin') throw Object.assign(Error('forbidden'), { status: 403 }); }
+function authorize(req) { const role = req.headers['x-user-role']; if (authToken) { const supplied = String(req.headers.authorization || '').replace(/^Bearer\s+/i, ''); const expected = Buffer.from(authToken); const actual = Buffer.from(supplied); if (actual.length !== expected.length || !timingSafeEqual(actual, expected)) throw Object.assign(Error('unauthorized'), { status: 401 }); } if (role !== 'recruiter' && role !== 'admin') throw Object.assign(Error('forbidden'), { status: 403 }); }
 function validateAiResult(value) { const x = value; const scores = [x?.skills, x?.experience, x?.culture]; if (!scores.every((score) => Number.isInteger(score) && score >= 0 && score <= 10) || !Array.isArray(x?.strengths) || !Array.isArray(x?.questions) || !x?.reasoning) return null; return { ...x, status: 'ready' }; }
 function mutation(req, payload, handler) {
   const key = req.headers['idempotency-key'];

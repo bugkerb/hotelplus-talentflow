@@ -11,6 +11,8 @@ Deploy the Vite `dist/` output to Vercel, Cloudflare Pages, or another free stat
 Current deployment: https://hotelplus.vercel.app
 Vercel team: `bugkerbs-projects`; project: `hotelplus`.
 
+For an API deployment, configure `TALENTFLOW_AUTH_TOKEN` in the platform secret manager. The API then requires a bearer token and recruiter/admin role; the role header alone is retained only for the local demo when no token is configured.
+
 ## Smoke test
 
 After deployment verify the root page loads, all five navigation entries render, Tracker search filters candidates, stage change updates the lane, and each module shows its primary action.

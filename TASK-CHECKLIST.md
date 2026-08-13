@@ -39,9 +39,10 @@ Status: `DONE`
 - [x] OWASP review documents controls and residual risks.
 - [x] XSS protection, redaction, AI schema validation, and domain input validation are tested.
 - [x] API authorization, security headers, CORS allowlist, payload limit, and safe errors are enforced at backend boundary.
-- [ ] Real authenticated identity provider and file MIME sniffing remain production hardening.
+- [x] Bearer-token boundary is available through `TALENTFLOW_AUTH_TOKEN`; content-signature validation rejects mismatched resume uploads.
+- [ ] Identity-provider token issuance/rotation remains deployment-specific production hardening.
 
-Evidence: `server/index.mjs`, `scripts/api-smoke.mjs` authorization smoke test.
+Evidence: `server/index.mjs`, `src/domain/core.ts`, `src/domain/core.test.ts`, `scripts/api-smoke.mjs` authorization and token smoke tests.
 
 ## Task 4 - Idempotency and race conditions
 

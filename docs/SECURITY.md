@@ -4,8 +4,8 @@ The application treats resume, JD, candidate, source, and AI provider content as
 
 | OWASP area | Control | Residual risk |
 |---|---|---|
-| Access control | Resource policy belongs at API boundary | Full identity provider is deployment-specific |
-| Injection/XSS | Typed domain validation and escaped rendering contract | Production database adapter must parameterize queries |
+| Access control | API mutations require recruiter/admin role plus constant-time comparison of `Authorization: Bearer` token when `TALENTFLOW_AUTH_TOKEN` is configured | Token issuance/rotation should be delegated to the deployment identity provider |
+| Injection/XSS | Typed domain validation, escaped rendering contract, and resume content-signature validation | Production database adapter must parameterize queries |
 | Secrets | No client provider key; env-only convention | Deployment secret manager required |
 | Misconfiguration | CI audit, lockfile, strict input limits | Platform headers/CORS require deployment config |
 | Vulnerable components | `npm audit --audit-level=high` in CI | Ongoing updates required |
