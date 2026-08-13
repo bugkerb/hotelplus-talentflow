@@ -10,7 +10,8 @@ test('HR can navigate the four-module workflow', async ({ page }) => {
   await page.getByRole('button', { name: 'AI Screener' }).click();
   await page.getByLabel('Resume text').fill('TypeScript React Node.js 8 years');
   await page.getByRole('button', { name: 'Run Claude-compatible screening' }).click();
-  await expect(page.getByRole('status')).toContainText('Deterministic AI demo');
+  await expect(page.getByRole('status')).toContainText(/Screening complete|Deterministic AI demo/);
+  await expect(page.getByText(/overall match/)).toBeVisible();
   await page.getByRole('button', { name: 'Scheduler' }).click();
   await page.getByRole('button', { name: 'Create Google Meet payload' }).click();
   await expect(page.getByRole('status')).toContainText('Google Meet-compatible');
