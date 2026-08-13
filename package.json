@@ -1,0 +1,9 @@
+{
+  "name": "hotelplus-talentflow",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {"dev":"vite","build":"tsc -b && vite build","lint":"eslint .","typecheck":"tsc --noEmit","test":"vitest run","test:coverage":"vitest run --coverage","verify":"npm run lint && npm run typecheck && npm run test:coverage && npm run build"},
+  "dependencies": {"@vitejs/plugin-react":"latest","vite":"latest","typescript":"latest","react":"latest","react-dom":"latest"},
+  "devDependencies": {"@eslint/js":"latest","eslint":"latest","globals":"latest","vitest":"latest","@vitest/coverage-v8":"latest","jsdom":"latest","typescript-eslint":"latest","@types/react":"latest","@types/react-dom":"latest"}
+}

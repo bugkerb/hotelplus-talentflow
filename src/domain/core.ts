@@ -1,0 +1,17 @@
+export const stages = ['applied','screening','pre_screen','interview','offer','hired','rejected'] as const;
+export type Stage = typeof stages[number];
+export type Candidate = {id:string;name:string;email:string;phone:string;position:string;source:string;appliedAt:string;stage:Stage;version:number;resume?:string};
+export type JobDescription = {id:string;title:string;skills:string[];experience:number;culture:string};
+export type Screening = {candidateId:string;jdId:string;skills:number;experience:number;culture:number;reasoning:{skills:string;experience:string;culture:string};strengths:string[];questions:string[];status:'ready'|'needs_review'};
+export type Interview = {id:string;candidateId:string;interviewer:string;start:number;end:number;status:'scheduled'|'cancelled'|'completed';meetUrl:string;description:string};
+export function normalizeCandidate(input: Omit<Candidate,'id'|'stage'|'version'>): Omit<Candidate,'id'|'stage'|'version'>{const name=input.name.trim();const email=input.email.trim().toLowerCase();if(!name)throw Error('name_required');if(!/^\S+@\S+\.\S+$/.test(email))throw Error('email_invalid');return {...input,name,email}}
+const graph:Record<Stage,Stage[]>={applied:['screening','rejected'],screening:['pre_screen','rejected'],pre_screen:['interview','rejected'],interview:['offer','rejected'],offer:['hired','rejected'],hired:[],rejected:['applied']};
+export function moveCandidate(c:Candidate,to:Stage,version:number):Candidate{if(c.version!==version)throw Error('version_conflict');if(to!==c.stage&&!graph[c.stage].includes(to))throw Error('invalid_transition');return {...c,stage:to,version:c.version+(to===c.stage?0:1)}}
+export function overlap(a:number,b:number,c:number,d:number){return a<d&&c<b}
+export function assertSlot(existing:Pick<Interview,'start'|'end'>[],start:number,end:number){if(start>=end)throw Error('invalid_time');if(existing.some(x=>overlap(x.start,x.end,start,end)))throw Error('slot_conflict')}
+export function buildQuery(jd:JobDescription){return `${jd.title} (${jd.skills.join(' OR ')}) ${jd.experience}+ years ${jd.culture}`}
+export function rankCandidate(c:Candidate,jd:JobDescription){const text=(c.resume||'').toLowerCase();const matched=jd.skills.filter(s=>text.includes(s.toLowerCase()));const score=Math.round((matched.length/Math.max(jd.skills.length,1))*70+Math.min(30,((text.match(/year/g)||[]).length/jd.experience)*30));return {candidate:c,score,reason:`Matched ${matched.length}/${jd.skills.length} required skills`,matched}}
+export function validateScreening(s:unknown):Screening{const x=s as Screening;if(!x||![x.skills,x.experience,x.culture].every(n=>Number.isInteger(n)&&n>=0&&n<=10)||!Array.isArray(x.strengths)||!Array.isArray(x.questions))throw Error('ai_invalid_output');return {...x,status:'ready'}}
+export function redact(s:string){return s.replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g,'[redacted-email]').replace(/\b(?:key|token|sk)[-_][\w-]+/gi,'[redacted-secret]')}
+export function escapeHtml(s:string){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!))}
+export function idempotencyDecision(record:{key:string;fingerprint:string;response?:unknown}|undefined,key:string,fingerprint:string){if(!record)return'execute';if(record.key!==key||record.fingerprint!==fingerprint)return'conflict';return record.response===undefined?'conflict':'replay'}
