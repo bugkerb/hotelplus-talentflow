@@ -35,7 +35,7 @@ See [docs/SECURITY.md](docs/SECURITY.md). Never put provider credentials in the 
 
 ## Delivery documents
 
-Live demo: https://hotelplus-fc7krv4f0-bugkerbs-projects.vercel.app
+Live demo: https://hotelplus.vercel.app
 
 - [Task checklist](TASK-CHECKLIST.md)
 - [Product contract](docs/PRODUCT-CONTRACT.md)

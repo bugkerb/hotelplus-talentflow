@@ -8,7 +8,7 @@
 
 Deploy the Vite `dist/` output to Vercel, Cloudflare Pages, or another free static host. No AI key belongs in the browser. A server-side Claude adapter should be deployed separately with `ANTHROPIC_API_KEY` configured as a secret.
 
-Current deployment: https://hotelplus-fc7krv4f0-bugkerbs-projects.vercel.app
+Current deployment: https://hotelplus.vercel.app
 Vercel team: `bugkerbs-projects`; project: `hotelplus`.
 
 ## Smoke test
