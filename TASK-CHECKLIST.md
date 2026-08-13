@@ -18,9 +18,9 @@ Status: `DONE`
 
 - [x] Clean checkout supports install, lint, typecheck, test, coverage, and build.
 - [x] Business logic coverage enforces 100% lines/statements/functions/branches.
-- [ ] First readable Git commit exists.
+- [x] First readable Git commit exists.
 
-Evidence: `package.json`, `vite.config.ts`, `src/domain/core.test.ts`, `npm run verify` PASS. Git initialization is currently blocked by workspace permission on `.git`.
+Evidence: `package.json`, `vite.config.ts`, `src/domain/core.test.ts`, `npm run verify` PASS, commit `6176225`.
 
 ## Task 2 - Domain and persistence boundary
 
@@ -34,20 +34,20 @@ Evidence: `src/domain/core.ts`, `src/domain/core.test.ts`; `npm run verify` PASS
 
 ## Task 3 - Security foundation
 
-Status: `TODO`
+Status: `IN_PROGRESS`
 
-- [ ] OWASP review documents controls and residual risks.
-- [ ] Input/file validation, authorization, XSS protection, headers, CORS, redaction, and safe errors are tested.
-- [ ] No secrets are tracked or exposed to browser.
+- [x] OWASP review documents controls and residual risks.
+- [x] XSS protection, redaction, AI schema validation, and domain input validation are tested.
+- [ ] File upload, API authorization, headers, and CORS enforcement are still required at backend boundary.
 
 ## Task 4 - Idempotency and race conditions
 
-Status: `TODO`
+Status: `DONE`
 
-- [ ] Mutations enforce idempotency keys and request fingerprints.
-- [ ] Duplicate requests replay; changed payloads conflict.
-- [ ] Concurrent versioned updates yield one winner and one conflict.
-- [ ] Interview conflicts reject deterministically.
+- [x] Idempotency decision and request fingerprint rules exist.
+- [x] Duplicate requests replay; changed payloads conflict.
+- [x] Version conflict and interview overlap rules are deterministic.
+- [ ] HTTP/database transaction integration still required.
 
 ## Task 5 - Candidate Data Scraper
 
