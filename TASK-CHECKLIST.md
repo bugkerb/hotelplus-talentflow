@@ -116,3 +116,5 @@ Status: `IN_PROGRESS`
 - [ ] README, architecture, security, testing, AI harness, deployment, handover, and AI collaboration docs complete.
 - [x] Three-minute demo script and AI collaboration document are ready; conversation export remains a submission packaging step.
 - [ ] Clean checkout and requirement-by-requirement audit pass.
+
+Evidence gathered: GitHub shallow clone at commit `e008982` passed `npm run verify`; live E2E against `https://hotelplus.vercel.app` passed 2/2. Remaining audit gaps are explicitly listed in Tasks 3, 5, 6, 7, and 9.
