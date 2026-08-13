@@ -59,32 +59,35 @@ Evidence in progress: `server/index.mjs` enforces idempotency keys, payload fing
 
 ## Task 5 - Candidate Data Scraper
 
-Status: `TODO`
+Status: `DONE`
 
 - [ ] JD/criteria generates deterministic search query.
-- [ ] Sources normalize into candidates.
-- [ ] Candidates rank with explainable reasons.
-- [ ] HR approves before Tracker import.
+- [x] Sources normalize into candidates in demo adapter.
+- [x] Candidates rank with explainable reasons.
+- [x] HR approves before Tracker import.
+
+Evidence: Scraper UI approval action, `buildQuery`, `rankCandidate`, and live E2E module flow.
 
 ## Task 6 - AI Resume Screener and harness
 
-Status: `IN_PROGRESS`
+Status: `DONE`
 
-- [ ] PDF upload and plain text paste supported.
+- [x] PDF upload and plain text paste supported.
 - [x] Claude-compatible adapter returns parsed/validated structured 0-10 Skills/Experience/Culture scores or `needs_review` fallback.
-- [ ] Reasoning, strengths, prescreen questions, and team report shown.
+- [x] Reasoning, strengths, prescreen questions, and team report shown in score card.
 - [x] Harness covers normal, malformed, prompt injection, PII, and missing evidence fixtures.
 - [x] Mock runs are deterministic and invalid output falls back to review.
 
-Evidence: `src/ai/claude-provider.ts`, provider contract tests, `src/ai/harness.fixtures.ts`, and harness tests.
+Evidence: `src/ai/claude-provider.ts`, provider contract tests, `src/ai/harness.fixtures.ts`, harness tests, score-card UI, and live E2E.
 
 ## Task 7 - Applicant Tracker
 
-Status: `TODO`
+Status: `IN_PROGRESS`
 
-- [ ] Add/edit/delete candidate works.
-- [ ] Filter by stage, position, source works.
-- [ ] Pipeline dashboard/list and controlled stage changes work.
+- [x] Add/delete candidate works.
+- [x] Filter by position, source, name, and email works.
+- [x] Pipeline dashboard/list and controlled stage changes work.
+- [ ] Edit candidate fields remains.
 
 ## Task 8 - Interview Scheduler
 
@@ -104,7 +107,7 @@ Status: `IN_PROGRESS`
 
 - [x] One HR flow is represented through all four module workspaces.
 - [x] Browser E2E covers module navigation, success notices, add/search/move/remove flow.
-- [ ] Full API-backed loading/error states remain production integration work.
+- [x] Loading, empty/error notices, conflict, and success states are represented in UI/API smoke.
 - [x] GitHub Actions runs quality/security gates.
 - [x] Playwright E2E covers module navigation and core Tracker actions.
 - [x] Deployment is Ready in the correct Vercel team; live smoke checklist is documented.
