@@ -69,10 +69,10 @@ Status: `IN_PROGRESS`
 - [ ] PDF upload and plain text paste supported.
 - [ ] Claude-compatible adapter returns structured 0-10 Skills/Experience/Culture scores.
 - [ ] Reasoning, strengths, prescreen questions, and team report shown.
-- [ ] Harness covers normal, malformed, prompt injection, PII, and missing evidence fixtures.
-- [ ] Mock runs are deterministic and invalid output falls back to review.
+- [x] Harness covers normal, malformed, prompt injection, PII, and missing evidence fixtures.
+- [x] Mock runs are deterministic and invalid output falls back to review.
 
-Evidence in progress: `src/ai/claude-provider.ts` and provider contract tests.
+Evidence: `src/ai/claude-provider.ts`, provider contract tests, `src/ai/harness.fixtures.ts`, and harness tests.
 
 ## Task 7 - Applicant Tracker
 
@@ -84,11 +84,13 @@ Status: `TODO`
 
 ## Task 8 - Interview Scheduler
 
-Status: `TODO`
+Status: `IN_PROGRESS`
 
-- [ ] Google Calendar/Meet-compatible payload with description and questions.
-- [ ] Overlap warnings prevent double booking.
+- [x] Google Calendar/Meet-compatible payload with description and questions.
+- [x] Overlap warnings prevent double booking.
 - [ ] Reschedule/cancel updates Tracker.
+
+Evidence: `buildMeetEvent` and calendar contract test.
 
 ## Task 9 - UX, integration, CI/CD
 
