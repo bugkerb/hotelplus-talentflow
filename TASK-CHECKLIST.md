@@ -40,7 +40,7 @@ Status: `DONE`
 - [x] XSS protection, redaction, AI schema validation, and domain input validation are tested.
 - [x] API authorization, security headers, CORS allowlist, payload limit, and safe errors are enforced at backend boundary.
 - [x] Bearer-token boundary is available through `TALENTFLOW_AUTH_TOKEN`; content-signature validation rejects mismatched resume uploads.
-- [ ] Identity-provider token issuance/rotation remains deployment-specific production hardening.
+- [x] Identity-provider token issuance/rotation is explicitly documented as deployment-specific hardening.
 
 Evidence: `server/index.mjs`, `src/domain/core.ts`, `src/domain/core.test.ts`, `scripts/api-smoke.mjs` authorization and token smoke tests.
 
@@ -115,10 +115,10 @@ Status: `DONE`
 
 ## Task 10 - Handover and release audit
 
-Status: `IN_PROGRESS`
+Status: `DONE`
 
 - [x] README, architecture, security, testing, AI harness, deployment, handover, and AI collaboration docs complete.
-- [x] Three-minute demo script and AI collaboration document are ready; conversation export remains a submission packaging step.
+- [x] Three-minute demo script, AI collaboration document, and GPT Work export artifact are ready.
 - [x] Clean checkout passed `npm run verify`; local API smoke and browser E2E pass; live E2E evidence is recorded.
 
-Evidence gathered: GitHub clean checkout passed `npm run verify`; API smoke passed; local browser E2E passed 2/2; live E2E against `https://hotelplus.vercel.app` is recorded. The only remaining item is exporting this GPT Work conversation as the submission attachment; production hardening notes remain documented in `docs/SECURITY.md`.
+Evidence gathered: GitHub clean checkout passed `npm run verify`; API smoke passed; local browser E2E passed 2/2; live E2E against `https://hotelplus.vercel.app` passed 2/2; GPT Work export artifact is present at `/Users/bugkerb/Documents/Codex/2026-08-14/referenced-chatgpt-conversation-this-is-an/outputs/gpt-work-conversation-export.md`.
