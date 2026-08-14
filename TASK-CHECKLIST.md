@@ -122,3 +122,15 @@ Status: `DONE`
 - [x] Clean checkout passed `npm run verify`; local API smoke and browser E2E pass; live E2E evidence is recorded.
 
 Evidence gathered: GitHub clean checkout passed `npm run verify`; API smoke passed; local browser E2E passed 2/2; live E2E against `https://hotelplus.vercel.app` passed 2/2; GPT Work export artifact is present at `/Users/bugkerb/Documents/Codex/2026-08-14/referenced-chatgpt-conversation-this-is-an/outputs/gpt-work-conversation-export.md`.
+
+## Task 11 - OpenRouter API support
+
+Status: `DONE`
+
+- [x] OpenRouter is selectable through server-side `AI_PROVIDER=openrouter` configuration.
+- [x] `OPENROUTER_API_KEY` never reaches the browser and is sent only as a bearer token from the API boundary.
+- [x] Model, HTTP referer, and app title are configurable through environment variables.
+- [x] OpenAI-compatible response content is parsed and passed through the same schema validation and `needs_review` fallback as Claude.
+- [x] Deterministic parser/provider tests pass; full API smoke remains deterministic in demo mode.
+
+Evidence: `server/index.mjs`, `src/ai/openrouter-provider.ts`, `src/ai/openrouter-provider.test.ts`; `npm run verify` PASS (16 tests, 100% business-logic coverage).

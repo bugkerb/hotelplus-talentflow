@@ -19,7 +19,7 @@ Quality gate:
 npm run verify
 ```
 
-Business logic is configured for 100% lines, statements, functions, and branches. The current demo provider is deterministic and does not require an API key. A production Claude adapter must remain server-side and use `ANTHROPIC_API_KEY`.
+Business logic is configured for 100% lines, statements, functions, and branches. The current demo provider is deterministic and does not require an API key. Production AI can use Claude with `ANTHROPIC_API_KEY` or OpenRouter with `AI_PROVIDER=openrouter` and `OPENROUTER_API_KEY`; both remain server-side.
 
 ## Architecture decisions
 

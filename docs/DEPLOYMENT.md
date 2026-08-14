@@ -6,7 +6,7 @@
 
 ## Production target
 
-Deploy the Vite `dist/` output to Vercel, Cloudflare Pages, or another free static host. No AI key belongs in the browser. A server-side Claude adapter should be deployed separately with `ANTHROPIC_API_KEY` configured as a secret.
+Deploy the Vite `dist/` output to Vercel, Cloudflare Pages, or another free static host. No AI key belongs in the browser. A server-side Claude adapter should be deployed separately with `ANTHROPIC_API_KEY` configured as a secret. OpenRouter can be selected with `AI_PROVIDER=openrouter` and `OPENROUTER_API_KEY`; optionally set `OPENROUTER_MODEL`, `OPENROUTER_HTTP_REFERER`, and `OPENROUTER_APP_TITLE`. Never expose these values to Vite/browser code.
 
 Current deployment: https://hotelplus.vercel.app
 Vercel team: `bugkerbs-projects`; project: `hotelplus`.
